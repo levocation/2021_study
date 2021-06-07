@@ -1,0 +1,318 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Random random = new Random();
+		int temp = 0; // 임시 변수
+		Scanner scanner = new Scanner(System.in);
+		int time[] = {6,40}; // 시:분
+		int ending = 0; // 게임이 끝나는 사유
+		// ending == 0 일시 게임이 아직 끝나지 않음, 이외 게임이 끝난 것으로 간주함.
+		int userInput = 0; // 입력받을 변수
+		
+		String end_normal[] = {"NULL", "햇살이 따스한데...?", "실신의 정석", "천국에 온 것을 환영하오", "히치하이킹", 
+				"그러게 지갑을 확인했어야지", "선생님의 매서운 눈초리", "편-안 그 자체"};
+		String end_hidden[] = {"NULL", "밤새 뭘 했길래...?", "학교를 오긴 했는데... 뒷감당은 알아서"};
+		
+		// 엔딩에 영향을 주는 변수
+		boolean isBurned = false;
+		boolean find_sock = false;
+		boolean lost_wallet = false;
+		boolean catLovesYou = false;
+		
+		// 본격 생활패턴 시작
+		//System.out.println("현재 시각 : "+time[0]+"시 "+time[1]+"분");
+		
+		System.out.println("현재 시각 : "+time[0]+"시 "+time[1]+"분");
+		int tired_num = random.nextInt(10)+1;
+		System.out.println("현재 피로 수치 : "+(tired_num*10)+"%");
+		
+		if (tired_num >= 10) {
+			System.out.println("너무 피곤하여 곧바로 잠에 들었습니다.\n");
+			time[0] += 8;
+			System.out.println("현재 시각 : "+time[0]+"시 "+time[1]+"분");
+			ending = -1;
+		}
+		else {
+			System.out.println("일어났습니다.");
+			
+			if (tired_num >= 6) {
+				System.out.println("부모님은 일을 나가시고 없습니다.");
+				System.out.println("잠이 당신을 유혹합니다. 다시 잠을 자시겠습니까?");
+				System.out.println("1. 잠을 잔다.");
+				System.out.println("2. 잠을 참고 일어난다.");
+				userInput = scanner.nextInt();
+				
+				if (userInput == 1) {
+					System.out.println("곤히 잠에 들었습니다.\n");
+					time[0] += 8;
+					System.out.println("현재 시각 : "+time[0]+"시 "+time[1]+"분");
+					ending = 1;
+				}
+				else {
+					System.out.println("졸리지만 졸음을 참고 일어났습니다.");
+					System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+				}
+			}
+			if (ending == 0) {
+				System.out.println("세수를 하시겠습니까?");
+				System.out.println("1. 세수를 한다.");
+				System.out.println("2. 세수를 하지 않는다.");
+				userInput = scanner.nextInt();
+				
+				if (userInput == 1) {
+					System.out.println("세수를 하였습니다. 정신이 맑아졌습니다.");
+					tired_num -= 2;
+					if (tired_num < 0) tired_num = 0;
+					time[1] += 5;
+				}
+				else {
+					System.out.println("세수를 하지 않았습니다. 정신이 약간 몽롱합니다.");
+					tired_num += 2;
+					System.out.println("현재 피로 수치 : "+(tired_num*10)+"%");
+					if (tired_num >= 10) {
+						System.out.println("너무 피곤해서 쓰러졌습니다.\n");
+						time[0] += 8;
+						ending = 2;
+					}
+				}
+				System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+				if (ending == 0) {
+					System.out.println("김치찌개가 있습니다. 김치찌개를 끓여서 드시겠습니까?");
+					System.out.println("1. 김치찌개를 끓여 먹는다.");
+					System.out.println("2. 그냥 계란후라이를 해 먹는다.");
+					userInput = scanner.nextInt();
+					
+					if (userInput == 1) {
+						System.out.println("김치찌개를 끓여서 맛있게 먹었습니다.");
+						time[1] += 20;
+						if (time[1] >= 60) {
+							time[1] -= 60;
+							time[0]++;
+						}
+					}
+					else {
+						temp = random.nextInt(10) + 1;
+						if (temp <= 3) { // 30% 확률
+							isBurned = true;
+							System.out.println("계란후라이를 하던 도중 화상을 입었습니다.\n어찌저찌 수습하고 ");
+						}
+						System.out.println("계란후라이를 먹었습니다.");
+						time[1] += 10;
+						if (time[1] >= 60) {
+							time[1] -= 60;
+							time[0]++;
+						}
+					}
+					time[1] += 20;
+					if (time[1] >= 60) {
+						time[1] -= 60;
+						time[0]++;
+					}
+					System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+					System.out.println("양치를 한 후에 옷을 입습니다.");
+					System.out.println("실수로 아버지 양말을 골랐습니다. 내 양말을 찾으시겠습니까?");
+					System.out.println("1. 양말을 찾는다.");
+					System.out.println("2. 그냥 신는다.");
+					userInput = scanner.nextInt();
+					
+					if (userInput == 1) {
+						System.out.println("내 양말을 찾았습니다.");
+						time[1] += 5;
+						if (time[1] >= 60) {
+							time[1] -= 60;
+							time[0]++;
+						}
+						find_sock = true;
+					}
+					else System.out.println("그냥 양말을 신었습니다.");
+					
+					System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+					System.out.println("나갈 준비를 합니다.");
+					if (find_sock) {
+						System.out.println("깜빡하고 지갑을 챙기지 않았다는 것을 생각해냈습니다.");
+						System.out.println("지갑을 챙기고 나갈 준비를 합니다.");
+						lost_wallet = false;
+					}
+					else {
+						temp = random.nextInt(2);
+						if (temp == 1) lost_wallet = true; else lost_wallet = false;
+						System.out.println("모든 준비를 마쳤습니까?");
+						System.out.println("1. 그렇다.");
+						System.out.println("2. 뭔가 빼먹은 것 같은데...");
+						userInput = scanner.nextInt();
+						
+						if (userInput == 1)
+							System.out.println("모든 준비를 마쳤다고 판단했습니다. 밖으로 나갑니다.");
+						else {
+							time[1] += 10;
+							if (time[1] >= 60) {
+								time[1] -= 60;
+								time[0]++;
+							}
+							System.out.println("무언가 빼먹은 것 같다고 판단했는지 다시 한 번 물건을 확인합니다.");
+							if (lost_wallet)
+								System.out.println("깜빡하고 챙기지 않은 지갑을 챙겨 나왔습니다.");
+							else
+								System.out.println("... 빼먹은 것은 아무것도 없었습니다.");
+						}
+					}
+					System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+					System.out.println("신호등이 없는 횡단보도에 서 있습니다. 간헐적으로 차가 지나갑니다.");
+					System.out.println("그냥 가시겠습니까?");
+					System.out.println("1. 안전주의로 기다렸다가 간다.");
+					System.out.println("2. 빨리 간다.");
+					userInput = scanner.nextInt();
+					
+					if (userInput == 1) {
+						System.out.println("안전하게 차가 완전히 없어진 것을 확인한 뒤에 건넙니다.");
+						time[1] += 5;
+						if (time[1] >= 60) {
+							time[1] -= 60;
+							time[0]++;
+						}
+					}
+					else {
+						System.out.println("빠르게 앞으로 건너갑니다.");
+						temp = random.nextInt(3);
+						if (temp == 0) {
+							System.out.println("옆에서 지나가는 오토바이를 확인하지 못하고 부딪쳤습니다.");
+							ending = 3;
+						}
+					}
+					if (ending == 0) {
+						System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+						System.out.println("길을 가던 중 당신에게 호감을 보이는 고양이를 만났습니다.");
+						System.out.println("고양이를 어떻게 하시겠습니까?");
+						System.out.println("1. 무시하고 지나간다.");
+						System.out.println("2. 쓰다듬어 준다.");
+						System.out.println("3. 츄르를 사서 먹인다.");
+						userInput = scanner.nextInt();
+						
+						if (userInput == 1)
+							System.out.println("무시하고 지나갑니다. 지나가던 다른 고양이가 웃습니다.");
+						else if (userInput == 2) {
+							System.out.println("쓰다듬어 줍니다. 고양이가 좋아하는 듯 하더니...");
+							if (isBurned) {
+								System.out.println("고양이가 화상 입은 곳을 물어버렸습니다.");
+								System.out.println("손에서 피가 심하게 흐릅니다.");
+								System.out.println("고통에 그 자리에서 주저앉아버립니다.");
+								System.out.println("고양이는 그 틈을 타 지갑을 들고 도망갑니다.");
+								ending = 4;
+							}
+						}
+						else {
+							System.out.println("츄르를 사서 먹였습니다.");
+							System.out.println("고양이가 매우 좋아합니다.");
+							System.out.println("고양이가 당신과 동행합니다.");
+							catLovesYou = true;
+							time[1] += 10;
+							if (time[1] >= 60) {
+								time[1] -= 60;
+								time[0]++;
+							}
+						}
+						if (ending == 0) {
+							System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+							System.out.println("버스정류장 앞에 도착했습니다.");
+							System.out.println("112-5 버스가 기다리고 있지만 거의 꽉 차있습니다.");
+							System.out.println("다음 버스를 탑승하시겠습니까?");
+							System.out.println("1. 그냥 탄다.");
+							System.out.println("2. 버스를 기다린다.");
+							if (catLovesYou) System.out.println("3. 고양이가 가는 곳으로 따라간다.");
+							userInput = scanner.nextInt();
+							
+							if (userInput == 1) {
+								if (lost_wallet) {
+									System.out.println("버스에 타려고 했는데 지갑이 보이지 않습니다.");
+									System.out.println("집으로 전력질주하여 달려갑니다.");
+									System.out.println("집으로 도착하였으나, 지갑이 보이지 않습니다.");
+									ending = 5;
+								}
+								else {
+									time[1] += 15;
+									if (time[1] >= 60) {
+										time[1] -= 60;
+										time[0]++;
+									}
+									System.out.println("버스가 만석이다 보니 가는 데 시간이 꽤 걸렸습니다.");
+									System.out.println("우여곡절 끝에 도착했습니다.");
+								}
+							}
+							else if (userInput == 2 || (!catLovesYou && (userInput == 3))) {
+								System.out.println("다음 버스가 15분 뒤에 옵니다.");
+								time[1] += 15;
+								if (time[1] >= 60) {
+									time[1] -= 60;
+									time[0]++;
+								}
+								System.out.println("\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+								System.out.println("버스가 왔습니다.");
+								if (lost_wallet) {
+									System.out.println("버스에 타려고 했는데 지갑이 보이지 않습니다.");
+									System.out.println("집으로 전력질주하여 달려갑니다.");
+									System.out.println("집으로 도착하였으나, 지갑이 보이지 않습니다.");
+									ending = 5;
+								}
+								else {
+									time[1] += 10;
+									if (time[1] >= 60) {
+										time[1] -= 60;
+										time[0]++;
+									}
+									System.out.println("편안하게 도착했습니다.");
+								}
+							}
+							else if (userInput == 3 && (!catLovesYou)) {
+								System.out.println("고양이가 이끄는 곳으로 갔습니다.");
+								System.out.println("그곳에 들어가니 고양이의 주인으로 보이는 아주머니가 있었습니다.");
+								System.out.println("할머니한테 사정 설명을 하니 전직 택시운전사인 아주머니가 택시로 태워다줍니다.");
+								time[1] += 10;
+								if (time[1] >= 60) {
+									time[1] -= 60;
+									time[0]++;
+								}
+							}
+							if (ending == 0) {
+								System.out.println("\n\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+								System.out.println("학교에 도착했습니다.");
+								if (time[0] > 8 || (time[0] == 8 && time[1] > 20)) {
+									System.out.println("선생님이 매섭게 당신을 쳐다봅니다.");
+									ending = 6;
+								}
+								else {
+									if (isBurned && find_sock && catLovesYou) {
+										System.out.println("많은 일들을 겪어서 너무 피곤하여 한숨을 잤습니다.");
+										time[0] += 1;
+										System.out.println("\n\n\n\n현재 시각 : "+time[0]+"시 "+time[1]+"분");
+										ending = -2;
+									}
+									else {
+										System.out.println("순탄치만은 않았지만 나름 편안하게 학교에서 수업 준비를 합니다.");
+										ending = 7;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+		// ending 분기점
+		if (ending > 0) {
+			System.out.println("\nENDING " + ending);
+			System.out.println(end_normal[ending]);
+		}
+		else {
+			System.out.println("\nHIDDEN ENDING " + (-1 * ending));
+			System.out.println(end_hidden[-1 * ending]);
+		}
+	}
+
+}
