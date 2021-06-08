@@ -13,7 +13,7 @@ public class Main {
 		// ending == 0 일시 게임이 아직 끝나지 않음, 이외 게임이 끝난 것으로 간주함.
 		int userInput = 0; // 입력받을 변수
 		
-		String end_normal[] = {"NULL", "햇살이 따스한데...?", "실신의 정석", "천국에 온 것을 환영하오", "히치하이킹", 
+		String end_normal[] = {"NULL", "햇살이 따스한데...?", "실신의 정석", "천국에 온 것을 환영하오", "히치하이킹이 이런 거구나", 
 				"그러게 지갑을 확인했어야지", "선생님의 매서운 눈초리", "편-안 그 자체"};
 		String end_hidden[] = {"NULL", "밤새 뭘 했길래...?", "학교를 오긴 했는데... 뒷감당은 알아서"};
 		
@@ -203,6 +203,20 @@ public class Main {
 								System.out.println("고양이는 그 틈을 타 지갑을 들고 도망갑니다.");
 								ending = 4;
 							}
+							else {
+								System.out.println("갑자기 고양이가 본성을 드러냈습니다.");
+								System.out.println("고양이가 당신을 물었습니다.");
+								temp = random.nextInt(3);
+								if (temp == 0) {
+									System.out.println("손에서 피가 심하게 흐릅니다.");
+									System.out.println("고통에 그 자리에서 주저앉아버립니다.");
+									System.out.println("고양이는 그 틈을 타 지갑을 들고 도망갑니다.");
+									ending = 4;
+								}
+								else {
+									System.out.println("다행히도 손에 지갑을 들고 있어서 지갑이 대신 물렸습니다.");
+								}
+							}
 						}
 						else {
 							System.out.println("츄르를 사서 먹였습니다.");
@@ -301,9 +315,6 @@ public class Main {
 				}
 			}
 		}
-		
-		
-		
 		// ending 분기점
 		if (ending > 0) {
 			System.out.println("\nENDING " + ending);
@@ -316,3 +327,4 @@ public class Main {
 	}
 
 }
+
