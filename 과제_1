@@ -14,7 +14,7 @@ public class Main {
 		int userInput = 0; // 입력받을 변수
 		
 		String end_normal[] = {"NULL", "햇살이 따스한데...?", "실신의 정석", "천국에 온 것을 환영하오", "히치하이킹이 이런 거구나", 
-				"그러게 지갑을 확인했어야지", "선생님의 매서운 눈초리", "편-안 그 자체"};
+				"그러게 지갑을 확인했어야지", "선생님의 매서운 눈초리", "편-안 그 자체", "경찰서 갔다 온 썰 푼다", "3대 500치는 아주머니"};
 		String end_hidden[] = {"NULL", "밤새 뭘 했길래...?", "학교를 오긴 했는데... 뒷감당은 알아서", "아... 다왔는데..."};
 		
 		// 엔딩에 영향을 주는 변수 (이벤트)
@@ -280,10 +280,49 @@ public class Main {
 									System.out.println("편안하게 도착했습니다.");
 								}
 							}
-							else if (userInput == 3 && (!catLovesYou)) {
+							else if (userInput == 3 && catLovesYou) {
 								System.out.println("고양이가 이끄는 곳으로 갔습니다.");
 								System.out.println("그곳에 들어가니 고양이의 주인으로 보이는 아주머니가 있었습니다.");
-								System.out.println("할머니한테 사정 설명을 하니 전직 택시운전사인 아주머니가 택시로 태워다줍니다.");
+								temp = random.nextInt(2);
+								if (temp == 0) {
+									System.out.println("아주머니한테 사정 설명을 하니 전직 택시운전사인 아주머니가 택시로 태워다줍니다.");
+								}
+								else {
+									System.out.println("아주머니가 오해를 한 나머지 고양이 도둑으로 몰리고 있습니다.");
+									System.out.println("아주머니한테 어떻게 하시겠습니까?");
+									System.out.println("1. 사정을 설명한다.");
+									System.out.println("2. 도망간다.");
+									System.out.println("3. 1vs1을 신청한다.");
+									userInput = scanner.nextInt();
+									
+									if (userInput == 1) {
+										if (tired_num >= 6) {
+											System.out.println("정신이 피로한 상태로 어리바리한 채 사정을 설명합니다.");
+											System.out.println("말이 정돈되지 않아서 그런지 아주머니가 분노합니다.");
+											System.out.println("아주머니 : 여보세요? 여기 경찰서죠?\n");
+											time[0] += 2;
+											ending = 8;
+										}
+										else {
+											System.out.println("사정을 설명합니다.");
+											System.out.println("아주머니가 이해하고 학생을 돌려보냅니다.");
+										}
+									}
+									else if (userInput == 2) {
+										System.out.println("도망갔습니다.");
+										tired_num += 2;
+										System.out.println("현재 피로 수치 : "+(tired_num*10)+"%");
+										if (tired_num >= 10) {
+											System.out.println("피곤함을 참지 못하고 쓰러졌습니다.");
+											ending = 2;
+										}
+									}
+									else {
+										System.out.println("맞짱을 신청했습니다.");
+										System.out.println("\n\n아주머니의 펀치를 한 대 맞고 기절했습니다.");
+										ending = 9;
+									}
+								}
 								time[1] += 10;
 								if (time[1] >= 60) {
 									time[1] -= 60;
@@ -334,5 +373,4 @@ public class Main {
 			System.out.println(end_hidden[-1 * ending]);
 		}
 	}
-
 }
