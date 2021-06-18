@@ -12,7 +12,7 @@ void Quiz1() {
 	while (true)
 	{
 		string input;
-		cout << "¸í·É¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "ëª…ë ¹ì–´ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		getline(cin, input);
 
 		if (input[0] == 'i') {
@@ -61,11 +61,11 @@ void Quiz2() {
 	int A, B, C;
 	int numArr[10] = { 0, };
 
-	cout << "A ÀÔ·Â : ";
+	cout << "A ìž…ë ¥ : ";
 	cin >> A;
-	cout << "B ÀÔ·Â : ";
+	cout << "B ìž…ë ¥ : ";
 	cin >> B;
-	cout << "C ÀÔ·Â : ";
+	cout << "C ìž…ë ¥ : ";
 	cin >> C;
 
 	int answer = A * B * C;
@@ -77,16 +77,16 @@ void Quiz2() {
 
 	for (int i = 0; i < 10; i++)
 	{
-		cout << i << "ÀÇ °³¼ö : " << numArr[i] << "°³" << endl;
+		cout << i << "ì˜ ê°œìˆ˜ : " << numArr[i] << "ê°œ" << endl;
 	}
 }
 void Quiz3() {
 
 	int a, b;
 
-	cout << "Ã¹¹øÂ° ¼ýÀÚ ÀÔ·Â : ";
+	cout << "ì²«ë²ˆì§¸ ìˆ«ìž ìž…ë ¥ : ";
 	cin >> a;
-	cout << "µÎ¹øÂ° ¼ýÀÚ ÀÔ·Â : ";
+	cout << "ë‘ë²ˆì§¸ ìˆ«ìž ìž…ë ¥ : ";
 	cin >> b;
 	vector<int> v;
 	for (int i = 1; i < (a > b ? a : b); i++) {
@@ -106,7 +106,7 @@ void Quiz3() {
 void Quiz4() {
 
 	int length = 0;
-	cout << "¼ýÀÚ ÀÔ·Â : ";
+	cout << "ìˆ«ìž ìž…ë ¥ : ";
 	cin >> length;
 	cout << endl;
 	for (int i = -(length - 1); i < length; i++)
@@ -133,7 +133,7 @@ void Quiz6() {
 	
 	int length = 0;
 	
-	cout << "¼ýÀÚ ÀÔ·Â : ";
+	cout << "ìˆ«ìž ìž…ë ¥ : ";
 	cin >> length;
 
 	int num = 1;
@@ -193,7 +193,7 @@ void Quiz8() {
 
 	for (int i = 0; i < 10; i++)
 	{
-		cout << "Á¡¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "ì ìˆ˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		cin >> num[i];
 		if (num[i] == 0) break;
 		score_add[num[i] / 10 - 1]++;
@@ -201,7 +201,7 @@ void Quiz8() {
 
 	for (int i = 9; i >= 0; i--)
 	{
-		if (score_add[i] > 0) cout << (i+1) * 10 << " : " << score_add[i] << "¸í" << endl;
+		if (score_add[i] > 0) cout << (i+1) * 10 << " : " << score_add[i] << "ëª…" << endl;
 	}
 }
 void Quiz9() {
@@ -212,8 +212,8 @@ void Quiz9() {
 	cout << animal[select - 1] << endl;
 }
 void Quiz10() {
-	int humanCount = 0; // »ç¶÷ ¼ö
-	int num = 1; // Ãþ¼ö
+	int humanCount = 0; // ì‚¬ëžŒ ìˆ˜
+	int num = 1; // ì¸µìˆ˜
 	vector<int>change_log;
 	int input = -1;
 
@@ -247,7 +247,7 @@ void Quiz10() {
 			break;
 		}
 
-		cout << "ÇöÀç Ãþ ¼ö : " << num << "Ãþ / ÇöÀç ÀÎ¿ø ¼ö : " << humanCount << "¸í" << endl;
+		cout << "í˜„ìž¬ ì¸µ ìˆ˜ : " << num << "ì¸µ / í˜„ìž¬ ì¸ì› ìˆ˜ : " << humanCount << "ëª…" << endl;
 	}
 }
 
