@@ -1,0 +1,257 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+void Quiz1() {
+	
+	vector<int> v;
+	vector<int> mainV;
+
+	while (true)
+	{
+		string input;
+		cout << "명령어를 입력하세요 : ";
+		getline(cin, input);
+
+		if (input[0] == 'i') {
+			input.erase(0, 2);
+			int num = stoi(input);
+			if (mainV.empty()) {
+				mainV.push_back(num);
+			}
+			else {
+				v.clear();
+				v.push_back(num);
+				for (int i = 0; i < mainV.size(); i++) {
+					v.push_back(mainV[i]);
+				}
+				mainV = v;
+			}
+		}
+		else if (input[0] == 'o') {
+			if (mainV.empty()) cout << "empty" << endl;
+			else {
+				cout << "Output : " << mainV.front() << endl;
+				for (int i = 0; i < mainV.size() - 1; i++)
+				{
+					mainV[i] = mainV[i + 1];
+				}
+				mainV.pop_back();
+			}
+		}
+		else if (input[0] == 'c') {
+			cout << "Stack Count : " << mainV.size() << endl;
+		}
+
+		// print Stack
+		if (mainV.empty() == false)
+		{
+			cout << "Stack : [ ";
+			for (int i = 0; i < mainV.size(); i++) {
+				cout << mainV[i] << " ";
+			}
+			cout << "]";
+			cout << endl;
+		}
+	}
+}
+void Quiz2() {
+	int A, B, C;
+	int numArr[10] = { 0, };
+
+	cout << "A 입력 : ";
+	cin >> A;
+	cout << "B 입력 : ";
+	cin >> B;
+	cout << "C 입력 : ";
+	cin >> C;
+
+	int answer = A * B * C;
+	cout << "answer is " << answer << endl;
+	while (answer != 0) {
+		numArr[answer % 10]++;
+		answer /= 10;
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		cout << i << "의 개수 : " << numArr[i] << "개" << endl;
+	}
+}
+void Quiz3() {
+
+	int a, b;
+
+	cout << "첫번째 숫자 입력 : ";
+	cin >> a;
+	cout << "두번째 숫자 입력 : ";
+	cin >> b;
+	vector<int> v;
+	for (int i = 1; i < (a > b ? a : b); i++) {
+		if (a % i == 0 && b % i == 0)
+			v.push_back(i);
+	}
+
+	cout << "[ ";
+	for (int i = 0; i < v.size(); i++) {
+		if (i == v.size() - 1)
+			cout << v[i];
+		else
+			cout << v[i] << ", ";
+	}
+	cout << " ]";
+}
+void Quiz4() {
+
+	int length = 0;
+	cout << "숫자 입력 : ";
+	cin >> length;
+	cout << endl;
+	for (int i = -(length - 1); i < length; i++)
+	{
+		for (int j = 0; j < length; j++)
+		{
+			if (abs(i) <= j) cout << "*"; else cout << " ";
+		}
+		cout << endl;
+	}
+
+}
+void Quiz5() {
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (i <= j) cout << "*"; else cout << " ";
+		}
+		cout << endl;
+	}
+}
+void Quiz6() {
+	
+	int length = 0;
+	
+	cout << "숫자 입력 : ";
+	cin >> length;
+
+	int num = 1;
+
+	for (int i = 0; i < length; i++)
+	{
+		num = 1;
+		for (int j = 0; j < length; j++)
+		{
+			if (i + j >= length - 1) {
+				cout << num;
+				num++;
+			}
+			else cout << " ";
+		}
+		cout << endl;
+	}
+}
+void Quiz7() {
+	int a[2][3] = { 0, };
+	int b[2][3] = { 0, };
+
+	cout << "first array" << endl;
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cin >> a[i][j];
+		}
+	}
+	cout << "second array" << endl;
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cin >> b[i][j];
+		}
+	}
+
+	cout << "\n\n";
+	int num[2][3] = { 0, };
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			num[i][j] = a[i][j] * b[i][j];
+			printf("%3d ", num[i][j]);
+		}
+		cout << endl;
+	}
+}
+void Quiz8() {
+
+	int num[10] = { 0, };
+	int score_add[10] = { 0, };
+	int stop_num = 0;
+
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "점수를 입력하세요 : ";
+		cin >> num[i];
+		if (num[i] == 0) break;
+		score_add[num[i] / 10 - 1]++;
+	}
+
+	for (int i = 9; i >= 0; i--)
+	{
+		if (score_add[i] > 0) cout << (i+1) * 10 << " : " << score_add[i] << "명" << endl;
+	}
+}
+void Quiz9() {
+	int select = 0;
+	string animal[5] = { "dog", "cat", "chick", "lizard", "crow" };
+	cout << "Number? ";
+	cin >> select;
+	cout << animal[select - 1] << endl;
+}
+void Quiz10() {
+	int humanCount = 0; // 사람 수
+	int num = 1; // 층수
+	vector<int>change_log;
+	int input = -1;
+
+	while (input != 0) {
+		cout << "Input num : ";
+		cin >> input;
+		change_log.push_back(input);
+	}
+
+	for (int i = 0; i < change_log.size() - 1; i++)
+	{
+		switch (change_log[i])
+		{
+		case 1:
+			num++;
+			break;
+
+		case 2:
+			num--;
+			break;
+
+		case 3:
+			humanCount++;
+			break;
+
+		case 4:
+			humanCount--;
+			break;
+
+		default:
+			break;
+		}
+
+		cout << "현재 층 수 : " << num << "층 / 현재 인원 수 : " << humanCount << "명" << endl;
+	}
+}
+
+int main() {
+	// THE END
+	Quiz8();
+}
