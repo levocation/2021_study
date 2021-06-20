@@ -7,11 +7,11 @@ template<typename T>
 class myVector {
 
 public:
-	T* mainArr = new T; // °ªÀÌ º»°İÀûÀ¸·Î ¿òÁ÷ÀÌ´Â °÷
-	T* subArr = new T; // ¸ŞÀÎ ¹è¿­À» ¿òÁ÷ÀÌ±â À§ÇØ Á¶ÀıÇÏ´Â °÷
+	T* mainArr = new T; // ê°’ì´ ë³¸ê²©ì ìœ¼ë¡œ ì›€ì§ì´ëŠ” ê³³
+	T* subArr = new T; // ë©”ì¸ ë°°ì—´ì„ ì›€ì§ì´ê¸° ìœ„í•´ ì¡°ì ˆí•˜ëŠ” ê³³
 	int index = 0;
 	
-	void push(T value) { // °ªÀ» Áı¾î³Ö´Â´Ù.
+	void push(T value) { // ê°’ì„ ì§‘ì–´ë„£ëŠ”ë‹¤.
 		subArr = new int[index];
 		for (int i = 0; i < index; i++)
 			subArr[i] = mainArr[i];
@@ -24,7 +24,7 @@ public:
 		mainArr[index - 1] = value;
 	}
 
-	void pop() { // °ªÀ» »©³½´Ù.
+	void pop() { // ê°’ì„ ë¹¼ë‚¸ë‹¤.
 		for (int i = 0; i < index; i++)
 			subArr[i] = mainArr[i];
 		index--;
@@ -34,7 +34,7 @@ public:
 			mainArr[i] = subArr[i];
 	}
 
-	void print() { // vectorÀÇ °ªÀ» Ãâ·ÂÇÑ´Ù. [Debug]
+	void print() { // vectorì˜ ê°’ì„ ì¶œë ¥í•œë‹¤. [Debug]
 		for (int i = 0; i < size(); i++)
 			cout << mainArr[i] << " ";
 		cout << endl;
